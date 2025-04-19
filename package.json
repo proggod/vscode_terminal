@@ -1,0 +1,166 @@
+{
+  "name": "vscode-terminal-manager",
+  "displayName": "Terminal Manager",
+  "description": "Advanced terminal management for VS Code with command execution, monitoring, and workflow automation",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*",
+    "onCommand:terminalManager.create",
+    "onCommand:terminalManager.show",
+    "onCommand:terminalManager.delete",
+    "onCommand:terminalManager.runCommand",
+    "onCommand:terminalManager.runCommandWithTimeout",
+    "onCommand:terminalManager.killCommand",
+    "onCommand:terminalManager.showMenu",
+    "onCommand:terminalManager.createWorkflow",
+    "onCommand:terminalManager.runWorkflow",
+    "onCommand:terminalManager.deleteWorkflow"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "terminalManager.create",
+        "title": "Terminal Manager: Create New Terminal"
+      },
+      {
+        "command": "terminalManager.show",
+        "title": "Terminal Manager: Show Terminal"
+      },
+      {
+        "command": "terminalManager.delete",
+        "title": "Terminal Manager: Delete Terminal"
+      },
+      {
+        "command": "terminalManager.runCommand",
+        "title": "Terminal Manager: Run Command"
+      },
+      {
+        "command": "terminalManager.runCommandWithTimeout",
+        "title": "Terminal Manager: Run Command with Timeout"
+      },
+      {
+        "command": "terminalManager.killCommand",
+        "title": "Terminal Manager: Kill Command"
+      },
+      {
+        "command": "terminalManager.showMenu",
+        "title": "Terminal Manager: Show Menu"
+      },
+      {
+        "command": "terminalManager.createWorkflow",
+        "title": "Terminal Manager: Create Workflow"
+      },
+      {
+        "command": "terminalManager.runWorkflow",
+        "title": "Terminal Manager: Run Workflow"
+      },
+      {
+        "command": "terminalManager.deleteWorkflow",
+        "title": "Terminal Manager: Delete Workflow"
+      }
+    ],
+    "configuration": {
+      "title": "Terminal Manager",
+      "properties": {
+        "terminalManager.persistState": {
+          "type": "boolean",
+          "default": true,
+          "description": "Persist terminal state between VS Code sessions"
+        },
+        "terminalManager.autoKillHanging": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically detect and prompt to kill commands waiting for input"
+        },
+        "terminalManager.inputWaitTimeout": {
+          "type": "number",
+          "default": 5000,
+          "description": "Timeout in milliseconds to detect commands waiting for input"
+        },
+        "terminalManager.showInStatusBar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show Terminal Manager in the status bar"
+        },
+        "terminalManager.defaultWorkingDirectory": {
+          "type": "string",
+          "default": "",
+          "description": "Default working directory for new terminals"
+        },
+        "terminalManager.terminalState": {
+          "type": "object",
+          "default": {},
+          "description": "Internal storage for terminal state (do not modify directly)"
+        }
+      }
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "terminalManager.create",
+          "group": "TerminalManager"
+        },
+        {
+          "command": "terminalManager.show",
+          "group": "TerminalManager"
+        },
+        {
+          "command": "terminalManager.delete",
+          "group": "TerminalManager"
+        },
+        {
+          "command": "terminalManager.runCommand",
+          "group": "TerminalManager"
+        },
+        {
+          "command": "terminalManager.killCommand",
+          "group": "TerminalManager"
+        },
+        {
+          "command": "terminalManager.showMenu",
+          "group": "TerminalManager"
+        },
+        {
+          "command": "terminalManager.createWorkflow",
+          "group": "TerminalManager"
+        },
+        {
+          "command": "terminalManager.runWorkflow",
+          "group": "TerminalManager"
+        },
+        {
+          "command": "terminalManager.deleteWorkflow",
+          "group": "TerminalManager"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "terminalManager.create",
+          "when": "view == terminalExplorer",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.7",
+    "@types/vscode": "^1.60.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "eslint": "^8.13.0",
+    "typescript": "^4.7.2"
+  }
+}
